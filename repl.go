@@ -20,13 +20,18 @@ func startRepl(cfg *config.Config) {
 			continue
 		}
 		commandName := cleaned[0]
-		allCommands := commands.GetCommands()
-		command, ok := allCommands[commandName]
+		var args []string
+		if len(cleaned) > 1 {
+			args = cleaned[1:]
+		}
+
+		commandsMap, _ := commands.GetCommands()
+		command, ok := commandsMap[commandName]
 		if !ok {
 			fmt.Println("Invalid command")
 			continue
 		}
-		err := command.Callback(cfg)
+		err := command.Callback(cfg, args...)
 		if err != nil {
 			fmt.Println(err)
 			continue

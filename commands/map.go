@@ -6,7 +6,7 @@ import (
 	"github.com/ivancetus/pokedex_cli/config"
 )
 
-func callbackMap(cfg *config.Config) error {
+func callbackMap(cfg *config.Config, s ...string) error {
 	res, err := cfg.PokeApiClient.LocationAreaList(cfg.NextLocationArea)
 	if err != nil {
 		return err
@@ -22,7 +22,7 @@ func callbackMap(cfg *config.Config) error {
 	return nil
 }
 
-func callbackMapBack(cfg *config.Config) error {
+func callbackMapBack(cfg *config.Config, s ...string) error {
 	if cfg.PrevLocationArea == nil {
 		return errors.New("you're on thr first page")
 	}

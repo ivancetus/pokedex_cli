@@ -5,13 +5,13 @@ import (
 	"github.com/ivancetus/pokedex_cli/config"
 )
 
-func callbackHelp(cfg *config.Config) error {
-	allCommands := GetCommands()
+func callbackHelp(cfg *config.Config, s ...string) error {
+	commandsMap, commandsSlice := GetCommands()
 
 	fmt.Println("Welcome to the Pokedex_cli help menu!")
 	fmt.Println("\nAvailable Commands:")
-	for _, cmd := range allCommands {
-		fmt.Printf("  %-*s%-*s\n", len(cmd.Name)+2, cmd.Name, len(cmd.Description)+2, cmd.Description)
+	for _, key := range commandsSlice {
+		fmt.Printf("  %-*s%-*s\n", 24, commandsMap[key].Name, 40, commandsMap[key].Description)
 	}
 	fmt.Println("")
 	return nil

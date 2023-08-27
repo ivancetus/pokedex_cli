@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func callbackExit(cfg *config.Config) error {
+func callbackExit(cfg *config.Config, s ...string) error {
 	os.Exit(0)
 	return nil
 }
